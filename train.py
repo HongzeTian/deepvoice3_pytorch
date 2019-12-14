@@ -131,6 +131,7 @@ class TextDataSource(FileDataSource):
         global _frontend
         if _frontend is None:
             _frontend = getattr(frontend, hparams.frontend)
+
         seq = _frontend.text_to_sequence(text, p=hparams.replace_pronunciation_prob)
 
         if platform.system() == "Windows":
@@ -898,7 +899,7 @@ if __name__ == "__main__":
     # Load preset if specified
     if preset is not None:
         with open(preset) as f:
-            hparams.parse_json(f.read())
+                hparams.parse_json(f.read())
     # Override hyper parameters
     hparams.parse(args["--hparams"])
 

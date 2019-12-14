@@ -7,8 +7,8 @@ hparams = hparam_tf.hparam.HParams(
     name="deepvoice3",
 
     # Text:
-    # [en, jp, zh]
-    frontend='es',
+    # [en, jp]
+    frontend='en',
 
     # Replace words to its pronunciation with fixed probability.
     # e.g., 'hello' to 'HH AH0 L OW1'
@@ -16,7 +16,7 @@ hparams = hparam_tf.hparam.HParams(
     # en: Word -> pronunciation using CMUDict
     # jp: Word -> pronounciation usnig MeCab
     # [0 ~ 1.0]: 0 means no replacement happens.
-    replace_pronunciation_prob=1.0,
+    replace_pronunciation_prob=0.5,
 
     # Convenient model builder
     # [deepvoice3, deepvoice3_multispeaker, nyanko]
@@ -24,8 +24,7 @@ hparams = hparam_tf.hparam.HParams(
     # deepvoice3: DeepVoice3 https://arxiv.org/abs/1710.07654
     # deepvoice3_multispeaker: Multi-speaker version of DeepVoice3
     # nyanko: https://arxiv.org/abs/1710.08969
-    # builder="deepvoice3",
-    builder="nyanko",
+    builder="deepvoice3",
 
     # Must be configured depends on the dataset and model you use
     n_speakers=1,
@@ -33,15 +32,14 @@ hparams = hparam_tf.hparam.HParams(
 
     # Audio:
     num_mels=80,
-    fmin=55,
+    fmin=125,
     fmax=7600,
-    fft_size=2048,
+    fft_size=1024,
     hop_size=256,
     sample_rate=22050,
     preemphasis=0.97,
     min_level_db=-100,
     ref_level_db=20,
-    max_frame_num=900,
     # whether to rescale waveform or not.
     # Let x is an input waveform, rescaled waveform y is given by:
     # y = x / np.abs(x).max() * rescaling_max
@@ -110,8 +108,8 @@ hparams = hparam_tf.hparam.HParams(
     clip_thresh=0.1,
 
     # Save
-    checkpoint_interval=5000,
-    eval_interval=5000,
+    checkpoint_interval=10000,
+    eval_interval=10000,
     save_optimizer_state=True,
 
     # Eval:

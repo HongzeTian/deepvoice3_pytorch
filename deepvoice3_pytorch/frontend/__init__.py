@@ -31,3 +31,8 @@ try:
     from deepvoice3_pytorch.frontend import es
 except ImportError:
     es = None
+
+try:
+    from deepvoice3_pytorch.frontend import text
+except ImportError:
+    text = None

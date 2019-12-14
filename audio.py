@@ -91,3 +91,10 @@ def _normalize(S):
 
 def _denormalize(S):
     return (np.clip(S, 0, 1) * -hparams.min_level_db) + hparams.min_level_db
+
+def trim_silence(wav):
+    """ Trim silent parts with a threshold and 0.1 sec margin """
+    margin = int(22050 * 0.1)
+    wav = wav[margin:-margin]
+    return librosa.effects.trim(
+        wav, top_db=40, frame_length=1024, hop_length=256)[0]
